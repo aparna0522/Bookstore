@@ -21,15 +21,39 @@ app.get('/',(req,res)=> {
 // Retrieve a list of all books. Implement pagination to limit the number of books returned per request
 app.get('/books', async (req, res) => {
     try {
-        const books = await Book.find({});
-        return res.status(200).json({
-            count: books.length,
-            data: books
-        });
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+
+        const startIndex = (page - 1) * limit;
+        const endIndex = page * limit;
+
+        const books = await Book.find({}).limit(limit).skip(startIndex);
+
+        const results = {};
+
+        if (endIndex < (await Book.countDocuments().exec())) {
+            results.next = {
+                page: page + 1,
+                limit: limit
+            };
+        }
+
+        if (startIndex > 0) {
+            results.previous = {
+                page: page - 1,
+                limit: limit
+            };
+        }
+
+        results.count = books.length;
+        results.data = books;
+
+        return res.status(200).json(results);
     } catch(error) {
         return res.status(500).send({message: "All books not retrieved"});
     }
 });
+
 
 // Add a new book to the collection. 
 // Implement input validation to ensure all required fields are provided (`title`, `author`, `publicationYear`),
