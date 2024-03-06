@@ -2,10 +2,12 @@ import express from 'express';
 import { PORT, MONGOURI } from "./config.js";
 import mongoose from 'mongoose';
 import { Book } from './models/bookModel.js';
+import cors from 'cors';
 
 // Launching the express app
 const app = express();
-app.use(express.json())
+app.use(express.json());
+app.use(cors());
 
 // Connecting the app to the MongoDB database
 mongoose.connect(MONGOURI).then(() => {
