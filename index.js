@@ -144,11 +144,15 @@ app.get('/books/:id', async (req, res) => {
 // Update details of a specific book by ID. Allow partial updates, and ensure validation is applied to the input data
 app.put('/books/:id', async (req, res) => {
     try {
-        // Check if request body has all the required fields
-        if(!req.body.title || !req.body.author || !req.body.publicationYear) 
-            return res.status(400).send({message: 'Kindly send all required fields, id, title, author, publicationYear'});
-        
         const {id} = req.params;
+        const details = await Book.findById(id);
+        if(req.body.title) 
+            details.title = req.body.title;
+        if(req.body.author)
+            details.author = req.body.author;
+        if(req.body.publicationYear)
+            details.publicationYear = req.body.publicationYear;
+
         const result = await Book.findByIdAndUpdate(id, req.body);
         if(!result) 
             return res.status(404).json({message: "Book not found"});
