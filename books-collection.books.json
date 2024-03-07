@@ -1,0 +1,210 @@
+[{
+  "_id": {
+    "$oid": "65e6a6c1b7009770931e85ab"
+  },
+  "title": "1984",
+  "author": "George Orwell",
+  "publicationYear": 1950,
+  "createdAt": {
+    "$date": "2024-03-05T04:59:45.530Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-06T22:26:20.995Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e6a6e4b7009770931e85ae"
+  },
+  "title": "The Great Gatsby",
+  "author": "F. Scott Fitzgerald",
+  "publicationYear": 1925,
+  "createdAt": {
+    "$date": "2024-03-05T05:00:20.964Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-05T05:00:20.964Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e6a700b7009770931e85b0"
+  },
+  "title": "To Kill a Mockingbird",
+  "author": "Harper Lee",
+  "publicationYear": 1960,
+  "createdAt": {
+    "$date": "2024-03-05T05:00:48.426Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-05T05:00:48.426Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e8c8d75b8f634c8d8ce0a0"
+  },
+  "title": "Harry Potter and the Sorcerer's Stone",
+  "author": "J.K. Rowling",
+  "publicationYear": 1997,
+  "createdAt": {
+    "$date": "2024-03-06T19:49:43.946Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-06T20:16:10.909Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e8dc7f9a1956732eaa99b4"
+  },
+  "title": "Pride and Prejudice",
+  "author": "Jane Austen",
+  "publicationYear": 1813,
+  "createdAt": {
+    "$date": "2024-03-06T21:13:35.365Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-06T21:13:35.365Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e8dc8b9a1956732eaa99b6"
+  },
+  "title": "The Catcher in the Rye",
+  "author": "J.D. Salinger",
+  "publicationYear": 1951,
+  "createdAt": {
+    "$date": "2024-03-06T21:13:47.331Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-06T21:13:47.331Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e8dca79a1956732eaa99b8"
+  },
+  "title": "The Hobbit",
+  "author": "J.R.R. Tolkien",
+  "publicationYear": 1937,
+  "createdAt": {
+    "$date": "2024-03-06T21:14:15.402Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-06T21:14:15.402Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e8dcbc9a1956732eaa99bc"
+  },
+  "title": "The Lord of the Rings",
+  "author": "J.R.R. Tolkien",
+  "publicationYear": 1954,
+  "createdAt": {
+    "$date": "2024-03-06T21:14:36.390Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-06T21:14:36.390Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e8dcc99a1956732eaa99be"
+  },
+  "title": "The Catcher in the Rye",
+  "author": "J.D. Salinger",
+  "publicationYear": 1951,
+  "createdAt": {
+    "$date": "2024-03-06T21:14:49.131Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-06T21:14:49.131Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e8dcd19a1956732eaa99c0"
+  },
+  "title": "The Catcher in the Rye",
+  "author": "J.D. Salinger",
+  "publicationYear": 1951,
+  "createdAt": {
+    "$date": "2024-03-06T21:14:57.754Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-06T21:14:57.754Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e8dcdb9a1956732eaa99c2"
+  },
+  "title": "The Grapes of Wrath",
+  "author": "John Steinbeck",
+  "publicationYear": 1939,
+  "createdAt": {
+    "$date": "2024-03-06T21:15:07.049Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-06T21:15:07.049Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e8ec9d9a1956732eaa9a83"
+  },
+  "title": "The Shiva Triology",
+  "author": "Amish Tripathi",
+  "publicationYear": 2016,
+  "createdAt": {
+    "$date": "2024-03-06T22:22:21.392Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-06T22:22:21.392Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e9080c9a1956732eaa9b3c"
+  },
+  "title": "Harry Potter and the Prisoner of Azkaban",
+  "author": "J.K. Rowling",
+  "publicationYear": 2010,
+  "createdAt": {
+    "$date": "2024-03-07T00:19:24.259Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-07T00:19:24.259Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e90ed9740310d39f3629b5"
+  },
+  "title": "Harry Potter and the Goblet of Fire",
+  "author": "J.K. Rowling",
+  "publicationYear": 2012,
+  "createdAt": {
+    "$date": "2024-03-07T00:48:25.548Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-07T00:48:25.548Z"
+  },
+  "__v": 0
+}]
