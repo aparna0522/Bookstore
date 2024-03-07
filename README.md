@@ -10,7 +10,7 @@ Create a mongodb cluster, and use the mongoURI as the connection string.
 2. Run ```sh startFrontendServer.sh```
 3. Use the http-server link to launch the website.
 
-<h3>Backend Endpoints</h3>
+<h2>Backend Endpoints</h2>
 
 1. **GET** ```/books```:
    - Retrieve a list of all books. Implement pagination to limit the number of books returned per request.
