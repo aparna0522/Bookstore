@@ -1,0 +1,192 @@
+@font-face {
+    font-family: "BlueFamily";
+    src: url('../fonts/BLUE.TTF.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "ProductSans";
+    src: url('../fonts/PRODUCT\ SANS\ REGULAR.TTF.ttf') format('truetype');
+}
+
+body {
+    font-family: ProductSans;
+    margin: 0;
+    padding: 0;
+    background-color: #f2ebe1ff;
+}
+
+header {
+    font-family: BlueFamily;
+    background-color: black;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+#books-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.book {
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+    height: 150px;
+    position: relative;
+    perspective: 1000px;
+}
+
+.book:hover .book-inner {
+    transform: rotateY(180deg);
+}
+
+.book-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+.book-front,
+.book-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.book-front {
+    display: flex;
+    z-index: 2;
+    background-color: #a06e49ff;
+    color: #fff;
+    font-size: 25px;
+}
+
+.book-back {
+    transform: rotateY(180deg);
+    background-color: #d6d4c8ff;
+    color: #333;
+}
+
+.book-name {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.book-details {
+    margin-bottom: 5px;
+}
+
+#search-form {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#search-input {
+    padding: 8px;
+    width: 250px;
+    margin-top: 20px;
+    margin-right: 10px;
+    font-family: ProductSans;
+}
+
+#search-button {
+    padding: 8px 20px;
+    font-family: ProductSans;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+#search-button:hover {
+    background-color: #4CAF50;
+}
+
+#pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination-button {
+    padding: 8px 12px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin: 0 5px;
+}
+
+.pagination-button:disabled {
+    background-color: #f0f0f0;
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Styles for action buttons */
+.action-button {
+    padding: 8px 12px;
+    font-size: 16px;
+    font-family: ProductSans;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease; /* Add transition for smoother hover effect */
+}
+
+.addButton {
+    background-color: #4CAF50; /* Green color for add button */
+    color: white;
+}
+
+.statsButton {
+    background-color: #008CBA; /* Blue color for stats button */
+    color: white;
+}
+
+.editButton {
+    background-color: #808080; /* Gray color for edit button */
+    color: white;
+}
+
+.deleteButton {
+    background-color: #f44336; /* Red color for delete button */
+    color: white;
+}
+
+.action-button:hover {
+    opacity: 0.9; /* Decrease opacity on hover for all buttons */
+}
+
+/* Darker hover effect */
+.addButton:hover {
+    background-color: #45a049; /* Slightly darker green color on hover */
+}
+
+.statsButton:hover {
+    background-color: #00688b; /* Slightly darker blue color on hover */
+}
+
+.editButton:hover {
+    background-color: #6b6b6b; /* Slightly darker gray color on hover */
+}
+
+.deleteButton:hover {
+    background-color: #d32f2f; /* Slightly darker red color on hover */
+}

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Bookstore</h1>
+    </header>
+
+    <div id="search-form">
+        <input type="text" id="search-input" placeholder="Search by title or author">
+        <button id="search-button">Search</button>
+    </div>
+    <div class="button-container" style="text-align: center;">
+        <button id="add-book-button" class="action-button addButton">Add Book</button>
+        <button id="book-stats-button" class="action-button statsButton">Book Stats</button>
+        <button id="edit-book-button" class="action-button editButton">Edit Book</button>
+        <button id="delete-book-button" class="action-button deleteButton">Delete Book</button>
+    </div>
+    
+
+    <div id="books-list"></div>
+
+    <div id="pagination"></div>
+
+    <div></div>
+    <div></div>
+
+    
+    <script>
+        let currentPage = 1;
+
+        // Fetch books from backend and display them
+        async function fetchBooks(page = 1) {
+            try {
+                const response = await fetch(`http://localhost:8080/books?page=${page}`);
+                const data = await response.json();
+                const books = data.data;
+
+                const booksList = document.getElementById('books-list');
+                booksList.innerHTML = ''; // Clear previous data
+
+                books.forEach(book => {
+                    const bookElement = document.createElement('div');
+                    bookElement.classList.add('book');
+
+                    const bookInner = document.createElement('div');
+                    bookInner.classList.add('book-inner');
+
+                    const bookFront = document.createElement('div');
+                    bookFront.classList.add('book-front');
+                    bookFront.textContent = book.title;
+
+                    const bookBack = document.createElement('div');
+                    bookBack.classList.add('book-back');
+                    bookBack.innerHTML = `
+                        <p class="book-name">${book.title}</p>
+                        <p class="book-details"><strong>Author:</strong> ${book.author}</p>
+                        <p class="book-details"><strong>Publication Year:</strong> ${book.publicationYear}</p>
+                    `;
+
+                    bookInner.appendChild(bookFront);
+                    bookInner.appendChild(bookBack);
+                    bookElement.appendChild(bookInner);
+                    booksList.appendChild(bookElement);
+                });
+
+                // Display pagination
+                displayPagination(data);
+            } catch (error) {
+                console.error('Error fetching books:', error);
+            }
+        }
+
+        // Display pagination buttons
+        function displayPagination(data) {
+            const pagination = document.getElementById('pagination');
+            console.log(pagination);
+            if (!pagination) return; // Check if pagination element exists
+
+            pagination.innerHTML = '';
+
+            const prevButton = document.createElement('button');
+            prevButton.classList.add('pagination-button');
+            prevButton.textContent = 'Previous';
+            prevButton.disabled = !data.previous;
+            prevButton.addEventListener('click', () => {
+                currentPage--;
+                fetchBooks(currentPage);
+            });
+
+            const nextButton = document.createElement('button');
+            nextButton.classList.add('pagination-button');
+            nextButton.textContent = 'Next';
+            nextButton.disabled = !data.next;
+            nextButton.addEventListener('click', () => {
+                currentPage++;
+                fetchBooks(currentPage);
+            });
+
+            const pageInfo = document.createElement('span');
+            pageInfo.textContent = `Page ${currentPage}`;
+
+            pagination.appendChild(prevButton);
+            pagination.appendChild(pageInfo);
+            pagination.appendChild(nextButton);
+        }
+
+        // Search for books based on user input
+        async function searchBooks() {
+            const searchInput = document.getElementById('search-input').value.trim();
+            if (!searchInput) {
+                alert('Please enter a search query');
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:8080/books/search?q=${searchInput}`);
+                const data = await response.json();
+                const books = data;
+
+                const booksList = document.getElementById('books-list');
+                booksList.innerHTML = ''; // Clear previous data
+
+                books.forEach(book => {
+                    const bookElement = document.createElement('div');
+                    bookElement.classList.add('book');
+                    bookElement.innerHTML = `
+                        <h2>${book.title}</h2>
+                        <p><strong>Author:</strong> ${book.author}</p>
+                        <p><strong>Publication Year:</strong> ${book.publicationYear}</p>
+                    `;
+                    booksList.appendChild(bookElement);
+                });
+            } catch (error) {
+                console.error('Error searching books:', error);
+            }
+        }
+
+        async function addBook() {
+            const title = prompt('Enter the title of the book:');
+            const author = prompt('Enter the author of the book:');
+            const publicationYear = prompt('Enter the publication year of the book:');
+
+            if (!title || !author || !publicationYear) {
+                alert('Please provide all the required information.');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:8080/books', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title,
+                        author,
+                        publicationYear
+                    })
+                });
+
+                if (response.ok) {
+                    alert('Book added successfully!');
+                    fetchBooks(currentPage); // Refresh the book list
+                } else {
+                    const data = await response.json();
+                    alert(`Failed to add book: ${data.message}`);
+                }
+            } catch (error) {
+                console.error('Error adding book:', error);
+                alert('Failed to add book. Please try again later.');
+            }
+        }
+
+        // Functionality for getting book stats
+        async function getBookStats() {
+            try {
+                const response = await fetch('http://localhost:8080/books/stats');
+                if (response.ok) {
+                    const stats = await response.json();
+                    alert(`Total Number of Books: ${stats["Total Number of Books"]}\nOldest Published Book: ${stats["Oldest Published Book"]}\nNewest Published Book: ${stats["Newest Published Book"]}`);
+                } else {
+                    const data = await response.json();
+                    alert(`Failed to get book stats: ${data.message}`);
+                }
+            } catch (error) {
+                console.error('Error getting book stats:', error);
+                alert('Failed to get book stats. Please try again later.');
+            }
+        }
+        // Functionality for partially editing entries in the database
+        
+        async function editBook() {
+            const id = prompt('Enter the ID of the book you want to edit:');
+            if (!id) {
+                alert('Please enter the ID of the book you want to edit.');
+                return;
+            }
+
+            const title = prompt('Enter the new title of the book (leave blank to keep current):');
+            const author = prompt('Enter the new author of the book (leave blank to keep current):');
+            const publicationYear = prompt('Enter the new publication year of the book (leave blank to keep current):');
+
+            const newData = {};
+            if (title) newData.title = title;
+            if (author) newData.author = author;
+            if (publicationYear) newData.publicationYear = publicationYear;
+
+            if (Object.keys(newData).length === 0) {
+                alert('No new data provided for editing.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:8080/books/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(newData)
+                });
+
+                if (response.ok) {
+                    alert('Book edited successfully!');
+                    fetchBooks(currentPage); // Refresh the book list
+                } else {
+                    const data = await response.json();
+                    alert(`Failed to edit book: ${data.message}`);
+                }
+            } catch (error) {
+                console.error('Error editing book:', error);
+                alert('Failed to edit book. Please try again later.');
+            }
+        }
+
+        // Functionality for deleting a book from the database
+        async function deleteBook() {
+            const id = prompt('Enter the ID of the book you want to delete:');
+            if (!id) {
+                alert('Please enter the ID of the book you want to delete.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:8080/books/${id}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    alert('Book deleted successfully!');
+                    fetchBooks(currentPage); // Refresh the book list
+                } else {
+                    const data = await response.json();
+                    alert(`Failed to delete book: ${data.message}`);
+                }
+            } catch (error) {
+                console.error('Error deleting book:', error);
+                alert('Failed to delete book. Please try again later.');
+            }
+        }
+
+        // Add event listener to fetch books when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchBooks();
+            document.getElementById('search-button').addEventListener('click', searchBooks);
+            document.getElementById('add-book-button').addEventListener('click', addBook);
+            document.getElementById('book-stats-button').addEventListener('click', getBookStats);
+            document.getElementById('edit-book-button').addEventListener('click', editBook);
+            document.getElementById('delete-book-button').addEventListener('click', deleteBook);
+        });
+        
+    </script>
+</body>
+</html>
