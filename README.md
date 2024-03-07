@@ -5,7 +5,7 @@ This project aims at developing apis for a bookstore, creating a robust backend 
 <h2>How to run this project?</h2>
 
 Please ensure port 8080 is open and can serve the backend. 
-Create a mongodb cluster, and use the mongoURI as the connection string. 
+Create a mongodb cluster, and use the mongoURI as the connection string in config.js 
 1. Run ```sh startBackendServer.sh``` 
 2. Run ```sh startFrontendServer.sh```
 3. Use the http-server link to launch the website.
