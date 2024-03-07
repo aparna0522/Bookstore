@@ -37,7 +37,8 @@ Please ensure port 8080 is open and can serve the backend.
 13. **GET** ```/books/stats```:
      - Provide statistics about the collection of books, including the total number of books, the earliest and latest publication years, and any other relevant metrics you think are appropriate.
      - ```http://localhost:8080/books/stats```
-       
+
+**Note:** to find an ID, please fire a query using POSTMAN, to list all the books ```http://localhost:8080/books``` and find the ID of the book you want to delete.
 
 <h2> Assumptions: </h2>
 I have used MongoDB Database. So, the ID has been generated automatically, and it is unique everytime.
