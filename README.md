@@ -1,8 +1,9 @@
-<h1> This project aims at developing apis for a bookstore, creating a robust backend for the bookstore. This utilizes NodeJs and ExpressJs for developing this backend and HTML, CSS, JavaScript for Frontend.</h2>
+<h2>Project Description</h2>
+This project aims at developing apis for a bookstore, creating a robust backend for the bookstore. This utilizes NodeJs and ExpressJs for developing this backend and HTML, CSS, JavaScript for Frontend.</h2>
 
 <h2>How to run this project?</h2>
-Please ensure port 8080 is open and can serve our backend. 
-1. Run ```sh startBackendServer.sh```
+Please ensure port 8080 is open and can serve the backend. 
+1. Run ```sh startBackendServer.sh``` 
 2. Run ```sh startFrontendServer.sh```
 3. Use the http-server link to launch the website.
 
