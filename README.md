@@ -41,6 +41,3 @@ Create a mongodb cluster, and use the mongoURI as the connection string in confi
      - ```http://localhost:8080/books/stats```
 
 **Note:** to find an ID, please fire a query using POSTMAN, to list all the books ```http://localhost:8080/books``` and find the ID of the book you want to delete.
-
-<h2> Assumptions: </h2>
-I have used MongoDB Database. So, the ID has been generated automatically, and it is unique everytime.
